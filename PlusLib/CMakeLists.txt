@@ -44,11 +44,11 @@ OPTION(BUILD_TESTING
 
 # Need subversion for the automatic update of the repository
 find_package(Subversion)
-IF(Subversion_FOUND)
+IF(Subversion_FOUND AND NOT PLUS_IN_GIT)
   Subversion_WC_INFO(${CMAKE_CURRENT_SOURCE_DIR} PLUSLIB_SVN_INFO)
   MESSAGE(STATUS "Current revision is ${PLUSLIB_SVN_INFO_WC_REVISION}") 
   SET(PLUSLIB_REVISION ${PLUSLIB_SVN_INFO_WC_REVISION})
-ENDIF(Subversion_FOUND)
+ENDIF()
 
 SET( PLUSLIB_SVN_EXECUTABLE ${Subversion_SVN_EXECUTABLE} )
 
@@ -88,7 +88,6 @@ SET( USDIGITAL_SEI_BASE_DIR ${PLUSLIB_TOOLS_DIR}/UsDigital/SEI_5.22)
 SET( USDIGITAL_SEI_INCLUDE_DIR ${USDIGITAL_SEI_BASE_DIR}/inc CACHE PATH "Path to the US Digital SEI include directory (needed for the CIVCO stepper)." FORCE )
 SET( USDIGITAL_SEI_BINARY_DIR ${USDIGITAL_SEI_BASE_DIR}/bin CACHE PATH "Path to the US Digital SEI binary directory (needed for the CIVCO stepper)." FORCE )
 SET( USDIGITAL_SEI_LIB_DIR ${USDIGITAL_SEI_BASE_DIR}/lib CACHE PATH "Path to the US Digital SEI library directory (needed for the CIVCO stepper)." FORCE )
-
 
 # --------------------------------------------------------------------------
 # Subdirs
